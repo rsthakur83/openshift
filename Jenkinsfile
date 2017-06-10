@@ -4,6 +4,15 @@ node {
    		echo 'Hello Deploying Docker App'
    	stage 'Checkout'
    		git url: 'https://github.com/rsthakur83/openshift'
+   
+      stage 'Execute'
+         sh 'chmod +x docker.sh'
+      stage 'Deploy'
+         sh './docker.sh'
+ 
+      stage 'Deploy approval'
+        input "Deploy to prod?"
+
       stage 'app release'
          sh 'release=`cat release`'
       stage 'Supply app version'
