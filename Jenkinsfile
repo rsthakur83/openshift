@@ -21,4 +21,7 @@ node {
       stage 'Web Directory'
          sh 'echo "mv release/* /var/www/html" >> userdata.sh'
    
+      stage 'Terraform Creating Green Prod Env'
+         sh 'terraform apply'
+   
  }
