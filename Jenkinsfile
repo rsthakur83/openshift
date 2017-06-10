@@ -5,7 +5,7 @@ node {
    	stage 'Checkout'
    		git url: 'https://github.com/rsthakur83/openshift'
       stage 'app release'
-         sh 'release=cat release'
+         sh 'release=`cat release`'
       stage 'show app release '
          sh 'echo $release'
    
