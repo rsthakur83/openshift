@@ -7,10 +7,10 @@ node {
    
       stage 'Execute'
          sh 'chmod +x docker.sh'
-      stage 'Deploy'
+      stage 'Deploy in Test Env'
          sh './docker.sh'
  
-      stage 'Deploy approval'
+      stage 'Deploy to Prod approval'
         input "Deploy to prod?"
 
       stage 'app release'
