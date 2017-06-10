@@ -9,7 +9,7 @@ node {
       stage 'Deploy'
          sh './docker.sh'
       stage 'app release'
-         sh 'release=cat app_version'
+         sh 'release=cat release'
       stage 'show app release '
          sh 'echo $release'
    
