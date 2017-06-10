@@ -8,5 +8,9 @@ node {
          sh 'chmod +x docker.sh'
       stage 'Deploy'
          sh './docker.sh'
-  
-}
+      stage 'app release'
+         sh 'release=cat app_version'
+      stage 'show app release '
+         sh 'echo $release'
+   
+ }
