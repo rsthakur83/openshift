@@ -6,11 +6,9 @@ node {
    		git url: 'https://github.com/rsthakur83/openshift'
       stage 'app release'
          sh 'release=`cat release`'
-      stage 'show app release '
-         sh 'echo $release'
       stage 'Supply app version'
          sh 'release=`cat release`'
-         sh 'echo "git clone --depth 1 --branch $release git://github.com/rsthakur83/release.git" >> userdata.sh'
+         sh 'git clone --depth 1 --branch `cat release` git://github.com/rsthakur83/release.git" >> userdata.sh'
       stage 'Web Directory'
          sh 'echo "mv release/* /var/www/html" >> userdata.sh'
    
