@@ -1,5 +1,5 @@
-#!/bin/bash
+#!/usr/bin/sh
 
-release=`cat docker.yaml |grep app_version|awk '{print $2}'|head -1`
-echo $release
-echo "git clone --depth 1 --branch $release git://github.com/rsthakur83/release.git " >> userdata.sh
+out=`cat docker.yaml |grep app_version:|awk '{print $2}'|cut -c 1-12`
+echo $out
+echo "git clone --depth 1 --branch $out git://github.com/rsthakur83/release.git" >> userdata.sh
