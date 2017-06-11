@@ -22,9 +22,9 @@ node {
          sh 'echo "mv release/* /var/www/html" >> userdata.sh'
    
       stage 'Terraform Plan'
-         sh 'terraform plan'
+         sh 'sudo terraform plan'
       stage ' Creating Green Prod Env'
-         sh  'terraform apply'
+         sh  'sudo terraform apply'
    
       stage 'Changing Env'
          sh 'chmod +x scaling.sh'
