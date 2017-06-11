@@ -6,14 +6,14 @@ provider "aws" {
 
 
 resource "aws_route" "internet_access1" {
-  route_table_id         = "igw-83fe6ee5"
+  route_table_id         = "rtb-3b294843"
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = "igw-cd45f1ab"
+  gateway_id             = "igw-8abd2dec"
 }
 
 
 resource "aws_subnet" "public_1c" {
-    vpc_id = "vpc-2c70d755"
+    vpc_id = "vpc-7f319606"
     cidr_block = "10.0.3.0/24"
     map_public_ip_on_launch = "true"
     availability_zone = "us-east-1b"
@@ -23,7 +23,7 @@ resource "aws_subnet" "public_1c" {
 }
 
 resource "aws_subnet" "public_1d" {
-    vpc_id = "vpc-2c70d755"
+    vpc_id = "vpc-7f319606"
     cidr_block = "10.0.4.0/24"
     map_public_ip_on_launch = "true"
     availability_zone = "us-east-1c"
@@ -38,7 +38,7 @@ resource "aws_subnet" "public_1d" {
 resource "aws_security_group" "allow_ssh1" {
   name = "allow_all_ssh"
   description = "Allow inbound SSH traffic from my IP"
-  vpc_id = "vpc-adf30ad4"
+  vpc_id = "vpc-7f319606"
 
   ingress {
       from_port = 22
@@ -55,7 +55,7 @@ resource "aws_security_group" "allow_ssh1" {
 resource "aws_security_group" "web_server1" {
   name = "web server1"
   description = "Allow HTTP and HTTPS traffic in, browser access out."
-  vpc_id = "vpc-adf30ad4"
+  vpc_id = "vpc-7f319606"
 
   ingress {
       from_port = 80
@@ -82,7 +82,7 @@ resource "aws_security_group" "web_server1" {
 
 resource "aws_key_pair" "deployer" {
  key_name = "myapppkeypair2"
-  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDaj8nDzZrLXtfXpg3Uo71wrTfgVPMMLLdPRPPjj8hD1vRoAhkXpdluv4rDYJ6YucRZp7TGcnU2X6DaaEKMUayd7YAN99pf3v9Hm13n/dGc6rJZDTlu9jxaUuJIfSYQv4I7F/ZtixSsqYG1QAIw6KaRWhNO7OvfSMehMn0/4wVTS6fDJuCmo7MlFDU/KidRv3TT5sz+cc+OcYMUuczNtub3BSu+5x1sLLBQtYbntDs1oCAkJJ1yblE74dQMsNduC8fdFsRIJyRGGyQjCPB9gfImBlQu+zGgkgPmi2YEA1/x96v2jo6+L3ZIoFrpkmzuV8dGmmOrpEIEZZtKmi8DxP8L root@lap-am0044476.bccs.hutch.co.id"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDaj8nDzZrLXtfXpg3Uo71wrTfgVPMMLLdPRPPjj8hD1vRoAhkXpdluv4rDYJ6YucRZp7TGcnU2X6DaaEKM                                Uayd7YAN99pf3v9Hm13n/dGc6rJZDTlu9jxaUuJIfSYQv4I7F/ZtixSsqYG1QAIw6KaRWhNO7OvfSMehMn0/4wVTS6fDJuCmo7MlFDU/KidRv3TT5sz+cc+OcYMUuczNtub3BSu+                                5x1sLLBQtYbntDs1oCAkJJ1yblE74dQMsNduC8fdFsRIJyRGGyQjCPB9gfImBlQu+zGgkgPmi2YEA1/x96v2jo6+L3ZIoFrpkmzuV8dGmmOrpEIEZZtKmi8DxP8L root@lap-am                                0044476.bccs.hutch.co.id"
 }
 
 
@@ -125,4 +125,3 @@ output "subnet 1C id" {
 output "subnet 1D id" {
  value =  "${aws_subnet.public_1d.id}"
 }
-
