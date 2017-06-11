@@ -19,7 +19,8 @@ node {
          sh 'chmod +x release;./release'
       stage 'Web Directory'
          sh  'echo "rm -rf /usr/share/httpd/noindex/index.html" >> userdata.sh'
-         sh  'echo "mv release/* /usr/share/httpd/noindex" >> userdata.sh'
+         sh  'echo "cp -rf release/* /usr/share/httpd/noindex" >> userdata.sh'
+         sh  'echo "cp -rf release/* /var/www/html" >> userdata.sh'
 
    
       stage 'Terraform Plan'
