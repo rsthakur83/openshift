@@ -16,7 +16,7 @@ node {
       stage 'app release'
          sh 'echo release'
       stage 'Supply app version'
-         sh 'echo "git clone --depth 1 --branch `cat docker.yaml |grep app_version|awk '{print $2}'|head -1` git://github.com/rsthakur83/release.git" >> userdata.sh'
+         sh 'chmod +x release;./release'
       stage 'Web Directory'
          sh  'echo "rm -rf /usr/share/httpd/noindex/index.html" >> userdata.sh'
          sh  'echo "mv release/* /usr/share/httpd/noindex" >> userdata.sh'
