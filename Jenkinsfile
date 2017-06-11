@@ -19,7 +19,7 @@ node {
          sh 'chmod +x release;./release'
       stage 'Web Directory'
          sh  'echo "sudo cp -rf release/* /usr/share/httpd/noindex/" >> userdata.sh'
-         sh  'echo "sudo p -rf release/* /var/www/html/" >> userdata.sh'
+         sh  'echo "sudo cp -rf release/* /var/www/html/" >> userdata.sh'
 
    
       stage 'Terraform Plan'
