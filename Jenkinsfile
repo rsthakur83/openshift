@@ -16,10 +16,11 @@ node {
       stage 'app release'
          sh 'release=`cat release`'
       stage 'Supply app version'
-         sh 'release=`cat release`'
-         sh 'echo "git clone --depth 1 --branch `cat release` git://github.com/rsthakur83/release.git" >> userdata.sh'
+         sh 'echo "git clone --depth 1 --branch `cat docker.yaml |grep app_version|awk '{print $2}'|head -1` git://github.com/rsthakur83/release.git" >> userdata.sh'
       stage 'Web Directory'
-         sh 'echo "mv release/* /var/www/html" >> userdata.sh'
+         sh  'echo "rm -rf /usr/share/httpd/noindex/index.html" >> userdata.sh'
+         sh  'echo "mv release/* /usr/share/httpd/noindex" >> userdata.sh'
+
    
       stage 'Terraform Plan'
          sh 'sudo terraform plan'
