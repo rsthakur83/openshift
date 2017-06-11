@@ -28,6 +28,9 @@ node {
       stage ' Creating Green Prod Env'
          sh  'sudo terraform apply'
    
+      stage ' Wait for Online Service'
+         sh  'sleep 240'
+   
       stage 'Changing Env'
          sh 'chmod +x scaling.sh'
       stage 'Swaping Blue with Green'
