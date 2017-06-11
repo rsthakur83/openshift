@@ -1,24 +1,19 @@
-# Configure the AWS Provider
-# Configure the AWS Provider
 provider "aws" {
     region = "us-east-1"
 }
 
 
-#resource "aws_vpc" "myappp" {
-#     cidr_block = "10.0.0.0/16"
-#}
 
 
 resource "aws_route" "internet_access1" {
-  route_table_id         = "igw-6efb6a08"
+  route_table_id         = "igw-83fe6ee5"
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = "igw-cd45f1ab"
 }
 
 
 resource "aws_subnet" "public_1c" {
-    vpc_id = "vpc-da61c5a3"
+    vpc_id = "vpc-2c70d755"
     cidr_block = "10.0.3.0/24"
     map_public_ip_on_launch = "true"
     availability_zone = "us-east-1b"
@@ -28,7 +23,7 @@ resource "aws_subnet" "public_1c" {
 }
 
 resource "aws_subnet" "public_1d" {
-    vpc_id = "vpc-da61c5a3"
+    vpc_id = "vpc-2c70d755"
     cidr_block = "10.0.4.0/24"
     map_public_ip_on_launch = "true"
     availability_zone = "us-east-1c"
@@ -36,15 +31,6 @@ resource "aws_subnet" "public_1d" {
         Name = "Public 1D"
     }
 }
-
-
-#resource "aws_internet_gateway" "gwt" {
-#    vpc_id = "${aws_vpc.myappp.id}"
-
-#    tags {
-#        Name = "myappp gww"
-#    }
-#}
 
 
 
@@ -100,14 +86,12 @@ resource "aws_key_pair" "deployer" {
 }
 
 
- 
+
 resource "aws_launch_configuration" "machine-factory-v2" {
     name = "machine-factory-v2"
 #    image_id = "ami-2051294a"
     image_id = "ami-b63769a1"
-#    security_groups = [ "${aws_security_group.allow_web.id}"]
      security_groups = ["${aws_security_group.web_server1.id}","${aws_security_group.allow_ssh1.id}"]
-#     security_groups = ["sg-25268d59","sg-26268d5a"]
     instance_type = "t2.micro"
     user_data       = "${file("userdata.sh")}"
     lifecycle              { create_before_destroy = true }
@@ -121,14 +105,11 @@ resource "aws_autoscaling_group" "machine-factory-v2" {
   max_size = 10
   desired_capacity = 2
   health_check_grace_period = 80
-#  health_check_type = "EC2"
   health_check_type = "ELB"
   force_delete = true
   launch_configuration = "${aws_launch_configuration.machine-factory-v2.name}"
   load_balancers = ["web-elb"]
-#  vpc_id = "vpc-bb9e67c2"
   vpc_zone_identifier = ["${aws_subnet.public_1c.id}","${aws_subnet.public_1d.id}"]
-#  vpc_zone_identifier = ["{$aws_vpc.myappp.id}"]
 }
 
 
