@@ -21,10 +21,10 @@ node {
       stage 'Web Directory'
          sh 'echo "mv release/* /var/www/html" >> userdata.sh'
    
-      stage 'Change Terraform Permission'
-         sh 'chmod +x terraform.sh'
+      stage 'Terraform Plan'
+         sh 'terraform plan'
       stage ' Creating Green Prod Env'
-         sh  './terraform.sh'
+         sh  'terraform apply'
    
       stage 'Changing Env'
          sh 'chmod +x scaling.sh'
