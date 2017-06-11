@@ -91,6 +91,7 @@ resource "aws_launch_configuration" "machine-factory-v2" {
     name = "machine-factory-v2"
 #    image_id = "ami-2051294a"
     image_id = "ami-b63769a1"
+    key_name = "myapppkeypair3"
      security_groups = ["${aws_security_group.web_server1.id}","${aws_security_group.allow_ssh1.id}"]
     instance_type = "t2.micro"
     user_data       = "${file("userdata.sh")}"
