@@ -2,4 +2,4 @@
 
 release=`cat docker.yaml |grep app_version|awk '{print $2}'|head -1`
 echo $release
-echo " git clone --depth 1 --branch $release git://github.com/rsthakur83/release.git " >> userdata.sh
+echo "git clone --depth 1 --branch $release git://github.com/rsthakur83/release.git " >> userdata.sh
