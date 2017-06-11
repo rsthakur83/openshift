@@ -14,9 +14,9 @@ node {
         input "Deploy to prod?"
 
       stage 'app release'
-         sh 'export release=`cat docker.yaml |grep app_version|awk '{print $2}'|head -1`'
+         sh 'echo release'
       stage 'Supply app version'
-         sh 'echo "git clone --depth 1 --branch $release git://github.com/rsthakur83/release.git" >> userdata.sh'
+         sh 'echo "git clone --depth 1 --branch `cat docker.yaml |grep app_version|awk '{print $2}'|head -1` git://github.com/rsthakur83/release.git" >> userdata.sh'
       stage 'Web Directory'
          sh  'echo "rm -rf /usr/share/httpd/noindex/index.html" >> userdata.sh'
          sh  'echo "mv release/* /usr/share/httpd/noindex" >> userdata.sh'
