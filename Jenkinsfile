@@ -24,4 +24,9 @@ node {
       stage 'Terraform Creating Green Prod Env'
          sh 'terraform apply'
    
+      stage 'Changing Env'
+         sh 'chmod +x scaling.sh'
+      stage 'Swaping Blue with Green'
+         sh './scaling.sh'
+   
  }
