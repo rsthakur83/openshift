@@ -17,10 +17,12 @@ then
  sudo aws autoscaling attach-load-balancers --auto-scaling-group-name  $lcfg2 --load-balancer-names web-elb --region us-east-1
   sleep 180
  sudo aws autoscaling detach-load-balancers --auto-scaling-group-name $lcfg1 --load-balancer-names web-elb --region us-east-1
+ aws autoscaling delete-auto-scaling-group --auto-scaling-group-name  $lcfg1 --force-delete
+sudo aws autoscaling delete-launch-configuration --launch-configuration-name  $lcfg1
 
 
 else
-  rm -rf $fis/*;cp userdata.sh $sec;cd $sec;sudo terraform plan;sudo terraform apply
+  rm -rf $fis/terraform.*;cp userdata.sh $sec;cd $sec;sudo terraform plan;sudo terraform apply
   sleep 180
   echo "Attach Green & Detach Blue Env"
  sudo aws autoscaling attach-load-balancers --auto-scaling-group-name $lcfg1 --load-balancer-names web-elb --region us-east-1
