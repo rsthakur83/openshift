@@ -11,7 +11,7 @@ lcfg2="machine-factory-v2"
 
 if [ "$asg1" == "$lcfg1" ]
 then
-  rm -rf $fis/*;cp userdata.sh $fis;cd $fis;sudo terraform plan;sudo terraform apply
+  rm -rf $fis/terraform.*;cp userdata.sh $fis;cd $fis;sudo terraform plan;sudo terraform apply
   sleep 180
   echo "Attach Green & Detach Blue Env"
  sudo aws autoscaling attach-load-balancers --auto-scaling-group-name  $lcfg2 --load-balancer-names web-elb --region us-east-1
