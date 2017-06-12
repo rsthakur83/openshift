@@ -1,4 +1,4 @@
 #!/usr/bin/bash
 
-sudo terraform plan
-sudo terraform apply
+terraform plan
+terraform apply
