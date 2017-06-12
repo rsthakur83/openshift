@@ -9,9 +9,9 @@ lcfg2="machine-factory-v2"
 if [ "$asg1" == "$lcfg1" ]
 then
   echo "Attach Green & Detach Blue Env"
- sudo aws autoscaling attach-load-balancers --auto-scaling-group-name  $lcfg2 --load-balancer-names web-elb --region us-east-1;sudo sleep 120;sudo aws autoscaling detach-load-balancers --auto-scaling-group-name $lcfg1 --load-balancer-names web-elb --region us-east-1;sudo echo "destroy";sudo aws autoscaling delete-auto-scaling-group --auto-scaling-group-name $lcfg1 --region us-east-1
+ sudo aws autoscaling attach-load-balancers --auto-scaling-group-name  $lcfg2 --load-balancer-names web-elb --region us-east-1
 else
   echo "Attach Green & Detach Blue Env"
- sudo aws autoscaling attach-load-balancers --auto-scaling-group-name $lcfg1 --load-balancer-names web-elb --region us-east-1;sudo sleep 120;sudo aws autoscaling detach-load-balancers --auto-scaling-group-name $lcfg2 --load-balancer-names web-elb --region us-east-1;sudo echo "destroy";sudo aws autoscaling delete-auto-scaling-group --auto-scaling-group-name $lcfg2 --region us-east-1
+ sudo aws autoscaling attach-load-balancers --auto-scaling-group-name $lcfg1 --load-balancer-names web-elb --region us-east-1
 
 fi
