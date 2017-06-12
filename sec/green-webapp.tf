@@ -6,15 +6,15 @@ provider "aws" {
 
 
 resource "aws_route" "internet_access1" {
-  route_table_id         = "rtb-db2744a3"
+  route_table_id         = "rtb-e73d5e9f"
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = "igw-8234a7e4"
+  gateway_id             = "igw-b729bad1"
 }
 
 
 resource "aws_subnet" "public_1c" {
-    vpc_id = "vpc-8f8726f6"
-    cidr_block = "10.0.3.0/24"
+    vpc_id = "vpc-7a61c003"
+    cidr_block = "10.0.5.0/24"
     map_public_ip_on_launch = "true"
     availability_zone = "us-east-1b"
     tags {
@@ -23,8 +23,8 @@ resource "aws_subnet" "public_1c" {
 }
 
 resource "aws_subnet" "public_1d" {
-    vpc_id = "vpc-8f8726f6"
-    cidr_block = "10.0.4.0/24"
+    vpc_id = "vpc-7a61c003"
+    cidr_block = "10.0.6.0/24"
     map_public_ip_on_launch = "true"
     availability_zone = "us-east-1c"
     tags {
@@ -38,7 +38,7 @@ resource "aws_subnet" "public_1d" {
 resource "aws_security_group" "allow_ssh1" {
   name = "allow_all_ssh"
   description = "Allow inbound SSH traffic from my IP"
-  vpc_id = "vpc-8f8726f6"
+  vpc_id = "vpc-7a61c003"
 
   ingress {
       from_port = 22
@@ -55,7 +55,7 @@ resource "aws_security_group" "allow_ssh1" {
 resource "aws_security_group" "web_server1" {
   name = "web server1"
   description = "Allow HTTP and HTTPS traffic in, browser access out."
-  vpc_id = "vpc-8f8726f6"
+  vpc_id = "vpc-7a61c003"
 
   ingress {
       from_port = 80
@@ -81,7 +81,7 @@ resource "aws_security_group" "web_server1" {
 
 
 resource "aws_key_pair" "deployer" {
- key_name = "myappkeypair3"
+ key_name = "myappkeypair4"
   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDaj8nDzZrLXtfXpg3Uo71wrTfgVPMMLLdPRPPjj8hD1vRoAhkXpdluv4rDYJ6YucRZp7TGcnU2X6DaaEKMUayd7YAN99pf3v9Hm13n/dGc6rJZDTlu9jxaUuJIfSYQv4I7F/ZtixSsqYG1QAIw6KaRWhNO7OvfSMehMn0/4wVTS6fDJuCmo7MlFDU/KidRv3TT5sz+cc+OcYMUuczNtub3BSu+5x1sLLBQtYbntDs1oCAkJJ1yblE74dQMsNduC8fdFsRIJyRGGyQjCPB9gfImBlQu+zGgkgPmi2YEA1/x96v2jo6+L3ZIoFrpkmzuV8dGmmOrpEIEZZtKmi8DxP8L root@lap-am0044476.bccs.hutch.co.id"
 }
 
@@ -91,7 +91,7 @@ resource "aws_launch_configuration" "machine-factory-v1" {
     name = "machine-factory-v1"
 #    image_id = "ami-2051294a"
     image_id = "ami-b63769a1"
-    key_name = "myappkeypair3"
+    key_name = "myappkeypair4"
      security_groups = ["${aws_security_group.web_server1.id}","${aws_security_group.allow_ssh1.id}"]
     instance_type = "t2.micro"
     user_data       = "${file("userdata.sh")}"
@@ -104,7 +104,7 @@ resource "aws_autoscaling_group" "machine-factory-v1" {
   name = "machine-factory-v1"
   min_size = 2
   max_size = 10
-  desired_capacity = 2
+  desired_capacity = 3
   health_check_grace_period = 80
   health_check_type = "ELB"
   force_delete = true
