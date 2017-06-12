@@ -6,14 +6,14 @@ provider "aws" {
 
 
 resource "aws_route" "internet_access1" {
-  route_table_id         = "rtb-3b294843"
+  route_table_id         = "rtb-20026258"
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = "igw-8abd2dec"
+  gateway_id             = "igw-f993009f"
 }
 
 
 resource "aws_subnet" "public_1c" {
-    vpc_id = "vpc-7f319606"
+    vpc_id = "vpc-0555f37c"
     cidr_block = "10.0.3.0/24"
     map_public_ip_on_launch = "true"
     availability_zone = "us-east-1b"
@@ -23,7 +23,7 @@ resource "aws_subnet" "public_1c" {
 }
 
 resource "aws_subnet" "public_1d" {
-    vpc_id = "vpc-7f319606"
+    vpc_id = "vpc-0555f37c"
     cidr_block = "10.0.4.0/24"
     map_public_ip_on_launch = "true"
     availability_zone = "us-east-1c"
@@ -38,7 +38,7 @@ resource "aws_subnet" "public_1d" {
 resource "aws_security_group" "allow_ssh1" {
   name = "allow_all_ssh"
   description = "Allow inbound SSH traffic from my IP"
-  vpc_id = "vpc-7f319606"
+  vpc_id = "vpc-0555f37c"
 
   ingress {
       from_port = 22
@@ -55,7 +55,7 @@ resource "aws_security_group" "allow_ssh1" {
 resource "aws_security_group" "web_server1" {
   name = "web server1"
   description = "Allow HTTP and HTTPS traffic in, browser access out."
-  vpc_id = "vpc-7f319606"
+  vpc_id = "vpc-0555f37c"
 
   ingress {
       from_port = 80
@@ -91,7 +91,7 @@ resource "aws_launch_configuration" "machine-factory-v2" {
     name = "machine-factory-v2"
 #    image_id = "ami-2051294a"
     image_id = "ami-b63769a1"
-    key_name = "myapppkeypair3"
+    key_name = "myappkeypair3"
      security_groups = ["${aws_security_group.web_server1.id}","${aws_security_group.allow_ssh1.id}"]
     instance_type = "t2.micro"
     user_data       = "${file("userdata.sh")}"
