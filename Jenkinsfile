@@ -23,9 +23,9 @@ node {
 
    
       stage 'Terraform Plan'
-         sh 'sudo terraform plan'
+         sh 'chmod +x terraform.sh'
       stage ' Creating Green Prod Env'
-         sh  'sudo terraform apply'
+         sh  './terraform.sh'
    
       stage ' Wait for Online Service'
          sh  'sleep 240'
