@@ -21,15 +21,7 @@ node {
          sh  'echo "sudo cp -rf release/* /usr/share/httpd/noindex" >> userdata.sh'
          sh  'echo "sudo cp -rf release/* /var/www/html" >> userdata.sh'
 
-   
-      stage 'Terraform Plan'
-         sh 'terraform plan'
-      stage ' Creating Green Prod Env'
-         sh  'terraform apply'
-   
-      stage ' Wait for Online Service'
-         sh  'sleep 240'
-   
+ 
       stage 'Changing Env'
          sh 'chmod +x scaling.sh'
       stage 'Swaping Blue with Green'
