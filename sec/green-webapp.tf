@@ -7,7 +7,7 @@ provider "aws" {
 
 
 resource "aws_launch_configuration" "machine-factory-v1" {
-    name = "machine-factory-v2"
+    name = "machine-factory-v1"
     image_id = "ami-b63769a1"
      security_groups = ["sg-fec8228f","sg-66ce2417"]
     instance_type = "t2.micro"
