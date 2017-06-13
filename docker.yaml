@@ -49,4 +49,4 @@
 
   - name: Run the build
     #command: docker run -tid -p 9000:80 webapp:"{{ lookup('env', 'BUILD_ID')}}"
-    command: docker run -tid -p 90"{{ lookup('env', 'BUILD_ID')}}":80 webapp:"{{ lookup('env', 'BUILD_ID')}}"
+    command: docker run -tid -p 9"{{ lookup('env', 'BUILD_ID')}}":80 webapp:"{{ lookup('env', 'BUILD_ID')}}"
