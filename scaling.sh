@@ -21,7 +21,8 @@ sleep 120
 #sudo aws autoscaling update-auto-scaling-group --auto-scaling-group-name machine-factory-v1 --launch-configuration-name $lcfg2  --min-size 3 --max-size 4 --vpc-zone-identifier $sub2
 ### TEST
 
-sudo aws autoscaling update-auto-scaling-group --auto-scaling-group-name machine-factory-v1 --launch-configuration-name $lcfg2
+#sudo aws autoscaling update-auto-scaling-group --auto-scaling-group-name machine-factory-v1 --launch-configuration-name $lcfg2
+sudo aws autoscaling update-auto-scaling-group --auto-scaling-group-name machine-factory-v1 --launch-configuration-name $lcfg2 --min-size 4 --max-size 5
 ##################
 
 sleep 120
@@ -33,7 +34,8 @@ else
 #sudo aws autoscaling update-auto-scaling-group --auto-scaling-group-name machine-factory-v1 --launch-configuration-name $lcfg1  --min-size 3 --max-size 4 --vpc-zone-identifier $sub1
 #sudo aws autoscaling update-auto-scaling-group --auto-scaling-group-name machine-factory-v1 --launch-configuration-name $lcfg1  --min-size 3 --max-size 4 --vpc-zone-identifier $sub2
 ###### TEST ######
-sudo aws autoscaling update-auto-scaling-group --auto-scaling-group-name machine-factory-v1 --launch-configuration-name $lcfg1
+#sudo aws autoscaling update-auto-scaling-group --auto-scaling-group-name machine-factory-v1 --launch-configuration-name $lcfg1
+sudo aws autoscaling update-auto-scaling-group --auto-scaling-group-name machine-factory-v1 --launch-configuration-name $lcfg1 --min-size 4 --max-size 5
 ##########
 sleep 120
 sudo aws autoscaling delete-launch-configuration --launch-configuration-name $lcfg2
