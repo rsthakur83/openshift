@@ -6,8 +6,8 @@ vpcid="vpc-fba50682"
 asg1=`sudo aws autoscaling describe-launch-configurations --region us-east-1|grep LaunchConfigurationName|awk '{print $2}'|cut -c 2-19`
 fis="fis"
 sec="sec"
-sub1="sudo aws ec2 describe-subnets --filters "Name=vpc-id,Values=$vpcid"|grep "SubnetId"|awk '{print $2}'|cut -c 2-16|tail -1"
-sub2="sudo aws ec2 describe-subnets --filters "Name=vpc-id,Values=$vpcid"|grep "SubnetId"|awk '{print $2}'|cut -c 2-16|head -1"
+sub1=`sudo aws ec2 describe-subnets --filters "Name=vpc-id,Values=$vpcid"|grep "SubnetId"|awk '{print $2}'|cut -c 2-16|tail -1`
+sub2=`sudo aws ec2 describe-subnets --filters "Name=vpc-id,Values=$vpcid"|grep "SubnetId"|awk '{print $2}'|cut -c 2-16|head -1`
 
 echo "ASG 2 $asg1"
 lcfg1="machine-factory-v1"
