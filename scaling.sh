@@ -1,12 +1,13 @@
 #!/bin/bash
 
+vpcid="vpc-9db414e4"
 
 #asg1=`sudo aws autoscaling describe-auto-scaling-groups --region us-east-1|grep AutoScalingGroupName|awk '{print $2}'|cut -c 2-19`
 asg1=`sudo aws autoscaling describe-launch-configurations --region us-east-1|grep LaunchConfigurationName|awk '{print $2}'|cut -c 2-19`
 fis="fis"
 sec="sec"
-sub1="subnet-de55faf2"
-sub2="subnet-39335671"
+sub1="aws ec2 describe-subnets --filters "Name=vpc-id,Values=$vpcid"|grep "SubnetId"|awk '{print $2}'|cut -c 2-16|tail -1"
+sub2="aws ec2 describe-subnets --filters "Name=vpc-id,Values=$vpcid"|grep "SubnetId"|awk '{print $2}'|cut -c 2-16|head -1"
 
 echo "ASG 2 $asg1"
 lcfg1="machine-factory-v1"
