@@ -19,6 +19,7 @@ then
 sleep 180
 sudo aws autoscaling update-auto-scaling-group --auto-scaling-group-name machine-factory-v1 --launch-configuration-name $lcfg2  --min-size 1 --max-size 1 --vpc-zone-identifier $sub1
 sudo aws autoscaling update-auto-scaling-group --auto-scaling-group-name machine-factory-v1 --launch-configuration-name $lcfg2  --min-size 1 --max-size 1 --vpc-zone-identifier $sub2
+sleep 180
 sudo aws autoscaling delete-launch-configuration --launch-configuration-name $lcfg1
 
 else
@@ -26,6 +27,7 @@ else
  sleep 180
 sudo aws autoscaling update-auto-scaling-group --auto-scaling-group-name machine-factory-v1 --launch-configuration-name $lcfg1  --min-size 1 --max-size 1 --vpc-zone-identifier $sub1
 sudo aws autoscaling update-auto-scaling-group --auto-scaling-group-name machine-factory-v1 --launch-configuration-name $lcfg1  --min-size 1 --max-size 1 --vpc-zone-identifier $sub2
+sleep 180
 sudo aws autoscaling delete-launch-configuration --launch-configuration-name $lcfg2
 
 fi
