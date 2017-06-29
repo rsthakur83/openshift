@@ -27,6 +27,8 @@ sudo aws autoscaling update-auto-scaling-group --auto-scaling-group-name machine
 
 sleep 120
 sudo aws autoscaling delete-launch-configuration --launch-configuration-name $lcfg1
+## Test ##
+sleep 60
 sudo aws autoscaling update-auto-scaling-group --auto-scaling-group-name machine-factory-v1 --launch-configuration-name $lcfg2 --min-size 2 --max-size 2
 else
  rm -rf $fis/terraform.*;cp userdata.sh $sec;cd $sec;sudo terraform plan;sudo terraform apply
@@ -40,5 +42,6 @@ sudo aws autoscaling update-auto-scaling-group --auto-scaling-group-name machine
 sleep 120
 sudo aws autoscaling delete-launch-configuration --launch-configuration-name $lcfg2
 ## Test ##
+sleep 60
 sudo aws autoscaling update-auto-scaling-group --auto-scaling-group-name machine-factory-v1 --launch-configuration-name $lcfg1 --min-size 2 --max-size 2
 fi
