@@ -9,7 +9,7 @@ provider "aws" {
 resource "aws_launch_configuration" "machine-factory-v1" {
     name = "machine-factory-v1"
     image_id = "ami-b63769a1"
-    security_groups = ["sg-051104b3a624d3d87","sg-05163e9d7e7e6862e"]
+    security_groups = ["sg-059f27f9305169702","sg-0e4a6fdc566fb7e86"]
     instance_type = "t2.micro"
     user_data       = "${file("userdata.sh")}"
     lifecycle              { create_before_destroy = true }
