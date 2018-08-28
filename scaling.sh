@@ -1,6 +1,6 @@
 #!/bin/bash
 
-vpcid="vpc-0710733d0abac4eb8"
+vpcid="vpc-081a25da1ba4729b9"
 
 
 asg1=`sudo aws autoscaling describe-launch-configurations --region us-east-1|grep LaunchConfigurationName|awk '{print $2}'|cut -c 2-19`
