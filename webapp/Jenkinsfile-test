@@ -16,7 +16,9 @@ parameters {
         }
         stage('Test') {
             steps {
+	   script{			
                 echo "git clone --depth 1 --branch $app_version git://github.com/rsthakur83/release.git" >> webapp/userdata.sh
+		}
             }
         }
         stage('Deploy') {
