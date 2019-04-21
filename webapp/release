@@ -1,0 +1,3 @@
+#!/usr/bin/sh
+
+echo "git clone --depth 1 --branch $app_version git://github.com/rsthakur83/release.git" >> userdata.sh

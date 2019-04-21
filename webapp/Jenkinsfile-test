@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Downloading Source Code') {
+            steps {
+                echo 'Downloading Source Code'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo "git clone --depth 1 --branch $app_version git://github.com/rsthakur83/release.git" >> userdata.sh
+            }
+        }
+        stage('Deploy') {
+            steps {
+                cat userdata.sh
+            }
+        }
+    }
+}
+
