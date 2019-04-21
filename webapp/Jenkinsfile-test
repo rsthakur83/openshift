@@ -1,6 +1,13 @@
 pipeline {
     agent any
 
+parameters {
+    choice(
+        name: 'app_version',
+        choices: "release-0.05\release-0.06",
+        description: 'Release version to deploy' )
+  }
+
     stages {
         stage('Downloading Source Code') {
             steps {
