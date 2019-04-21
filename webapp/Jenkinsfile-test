@@ -4,7 +4,7 @@ pipeline {
 parameters {
     choice(
         name: 'app_version',
-        choices: "release-0.05\release-0.06",
+        choices: "release-0.05\nrelease-0.06",
         description: 'Release version to deploy' )
   }
 
