@@ -9,12 +9,12 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo "git clone --depth 1 --branch $app_version git://github.com/rsthakur83/release.git" >> userdata.sh
+                echo "git clone --depth 1 --branch $app_version git://github.com/rsthakur83/release.git" >> webapp/userdata.sh
             }
         }
         stage('Deploy') {
             steps {
-                cat userdata.sh
+                cat webapp/userdata.sh
             }
         }
     }
